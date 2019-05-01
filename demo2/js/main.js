@@ -150,18 +150,24 @@ function setRemoteDescriptionSuccess(peerConnection) {
 function createdOffer(description) {
   trace(`Offer from localPeerConnection:\n${description.sdp}`);
 
+  // 发送方通过 setLocalDescription() 方法将本地会话信息保存, 接着通过信令通道, 将这些信息发送给接收方
   trace('localPeerConnection setLocalDescription start.');
   localPeerConnection.setLocalDescription(description)
     .then(() => {
       setLocalDescriptionSuccess(localPeerConnection);
     }).catch(setSessionDescriptionError);
 
+  // 接收方使用RTCPeerConnection的setRemoteDescription()方法, 将发送方传过来的远端会话信息填进去。
   trace('remotePeerConnection setRemoteDescription start.');
   remotePeerConnection.setRemoteDescription(description)
     .then(() => {
       setRemoteDescriptionSuccess(remotePeerConnection);
     }).catch(setSessionDescriptionError);
-
+  
+  // 接收方执行RTCPeerConnection的createAnswer()方法，传入获取到的远端会话信息, 
+  // 然后就会生成一个和发送方适配的本地会话。
+  // createAnswer() 方法返回的 promise 会传入一个 RTCSessionDescription 对象:
+  // 接收方将它设置为本地描述, 当然也需要发送给接收方。
   trace('remotePeerConnection createAnswer start.');
   remotePeerConnection.createAnswer()
     .then(createdAnswer)
@@ -199,7 +205,7 @@ hangupButton.disabled = true;
 
 
 // Handles start button action: creates local MediaStream.
-//调用getUserMedia(),将获取到的本地stream传给localVideo
+// 调用getUserMedia(),将获取到的本地stream传给localVideo
 function startAction() {
   startButton.disabled = true;
   navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
@@ -251,6 +257,8 @@ function callAction() {
   localPeerConnection.addStream(localStream);
   trace('Added local stream to localPeerConnection.');
 
+  // 1.发送者执行RTCPeerConnection的createOffer()方法。返回的promise中提供了
+  // 一个RTCSessionDescription对象其中包含了发送方本地的会话描述信息
   trace('localPeerConnection createOffer start.');
   localPeerConnection.createOffer(offerOptions)
     .then(createdOffer).catch(setSessionDescriptionError);
