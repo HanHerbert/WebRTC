@@ -1,0 +1,47 @@
+
+<!--
+    <!DOCTYPE html>
+<html>
+    <head>
+        <title>Realtime communication with WebRTC</title>
+        <link rel="stylesheet", href="css/main.css" />
+    </head>
+    <body>
+        <h1>Realtime communication with WebRTC </h1>
+        <video autoplay playsinline></video>
+        <script src="js/main.js"></script>
+    </body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Realtime communication with WebRTC</title>
+        <link rel="stylesheet", href="css/main.css" />
+    </head>
+    <body>
+        <h1>Realtime communication with WebRTC </h1>
+        <!--<video autoplay playsinline></video>-->
+        <video id="localVideo" autoplay playsinline ></video>
+        <video id="remoteVideo" autoplay playsinline ></video>
+        <div>
+            <button id="startButton">Start</button>
+            <button id="calButton">Call</button>
+            <button id="hangupButton">Hang Up</button>
+        </div>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
+<!-- 第一个 video 元素(id="localVideo")用于展示通过 getUserMedia() 获取到的本地视频流,
+     第二个 video 元素(id="remoteVideo")则通过RTCPeerconnection, 接收并显示同样的视频。
+     在实际应用中, 页面中一般都有两个 video 元素: 
+       一个用来展示本地视频, 另一个用来播放远程传输过来的视频
+       ( 可以参考微信视频聊天界面, 其中有一大一小,两个视频展示窗口 )。 
+-->
+
+<!-- adapter.js 是一个适配程序, 隔离了应用程序和规范之间的变更、前缀等差异.
+    (当然, WebRTC实现所使用的标准和协议都已经是稳定版了, 有前缀的API也没几个。) 
+-->
