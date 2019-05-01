@@ -1,3 +1,4 @@
+//invalid js， NO USE
 function setupRTC(targetId) {
 
     var isSupported = false;
