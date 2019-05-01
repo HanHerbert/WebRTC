@@ -7,3 +7,4 @@
 ## 最佳实践
 
 - 想要让代码跟上时代的部分, 请使用基于Promise的API, 并通过 [adapter.js](https://github.com/webrtc/adapter) 来兼容各种浏览器。
+
