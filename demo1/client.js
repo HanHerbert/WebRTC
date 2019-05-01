@@ -1,3 +1,4 @@
+//INVALID JS， NO USE
 function onRequest(io, socket) {
     return function (data) {
 
