@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Realtime Communication with WebRTC</title>
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body>
+        <h1>Realtime Communication with WebRTC</h1>
+        <!-- 第一个textarea用来输入文本 -->
+        <!-- 第二个textarea用来展示从另一端传过来的数据 -->
+        <textarea id="dataChannelSend" disabled 
+          placeholder="Press Start, enter some text, then press Send.">
+        </textarea>
+        <textarea id="dataChannelReceive" disabled></textarea>
+
+        <div id="buttons">
+            <button id="startButton">开始</button>
+            <button id="sendButton">发送</button>
+            <button id="closeButton">停止</button>
+        </div>
+
+        
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
