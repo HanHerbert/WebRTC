@@ -44,4 +44,7 @@ const hdConstraints = {
   }
 }
 //test1：只获取媒体流
+<<<<<<< HEAD
 
+=======
+>>>>>>> ec6b64ed6b00fa3df114ae892ab8fa56fd87545a
